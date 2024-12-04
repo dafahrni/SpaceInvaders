@@ -4,7 +4,7 @@
 
 ## Planned Extensions 
 
-- [ ] user info about control keys
+- [x] user info about control keys
 - [ ] sounds for shots and explosions
 - [ ] music
 - [ ] colorful enemies and explosions

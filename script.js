@@ -693,6 +693,8 @@
   }
   
   function drawStartScreen() {
+    fillText("Use arrow keys ↔ to move ship", 10, CANVAS_HEIGHT-40, '#FFFFFF', 20);
+    fillText("Use space key _ to shoot", 10, CANVAS_HEIGHT-20, '#FFFFFF', 20);
     fillCenteredText("Space Invaders", CANVAS_WIDTH*0.5, CANVAS_HEIGHT*0.36, '#FFFFFF', 36);
     fillBlinkingText("Press enter to play!", CANVAS_WIDTH*0.5, CANVAS_HEIGHT*0.5, '#FFFFFF', 36);
   }
