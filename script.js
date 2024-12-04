@@ -659,7 +659,7 @@
     fillText(text, x - metrics.width/2, y, color, fontSize);
   }
   
-  function fillBlinkingText(text, x, y, blinkFreq, color, fontSize) {
+  function fillBlinkingText(text, x, y, color, fontSize, blinkFreq=TEXT_BLINK_FREQ) {
     if (~~(0.5 + Date.now() / blinkFreq) % 2) {
       fillCenteredText(text, x, y, color, fontSize);
     }
@@ -674,7 +674,7 @@
                    player.clipRect.h * 0.5);
     fillText('CREDIT: ', CANVAS_WIDTH - 115, CANVAS_HEIGHT - 7.5);
     fillCenteredText('SCORE: ' + player.score, CANVAS_WIDTH/2, 20);
-    fillBlinkingText('00', CANVAS_WIDTH - 25, CANVAS_HEIGHT - 7.5, TEXT_BLINK_FREQ);
+    fillBlinkingText('00', CANVAS_WIDTH - 25, CANVAS_HEIGHT - 7.5);
   }
   
   function drawAliens(resized) {
@@ -692,8 +692,8 @@
   }
   
   function drawStartScreen() {
-    fillCenteredText("Space Invaders", CANVAS_WIDTH/2, CANVAS_HEIGHT/2.75, '#FFFFFF', 36);
-    fillBlinkingText("Press enter to play!", CANVAS_WIDTH/2, CANVAS_HEIGHT/2, 500, '#FFFFFF', 36);
+    fillCenteredText("Space Invaders", CANVAS_WIDTH*0.5, CANVAS_HEIGHT*0.36, '#FFFFFF', 36);
+    fillBlinkingText("Press enter to play!", CANVAS_WIDTH*0.5, CANVAS_HEIGHT*0.5, '#FFFFFF', 36);
   }
   
   function animate() {
