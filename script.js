@@ -174,6 +174,7 @@
   var player = null;
   var aliens = [];
   var particleManager = null;
+  var soundPool = null;
   var updateAlienLogic = false;
   var alienDirection = -1;
   var alienYDown = 0;
@@ -240,7 +241,7 @@
       this._super(resized);
     }
   });
-  
+
   var Player = SheetSprite.extend({
     init: function() {
       this._super(spriteSheetImg, PLAYER_CLIP_RECT, CANVAS_WIDTH/2, CANVAS_HEIGHT - 70);
@@ -260,6 +261,7 @@
     
     shoot: function() {
       var bullet = new Bullet(this.position.x, this.position.y - this.bounds.h / 2, 1, 1000);
+      soundPool.playerShoots();
       this.bullets.push(bullet);
     },
     
@@ -356,6 +358,7 @@
     
     shoot: function() {
       this.bullet = new Bullet(this.position.x, this.position.y + this.bounds.w/2, -1, 500);
+      soundPool.enemieShoots();
     },
     
     update: function(dt) {
@@ -456,6 +459,22 @@
           }
     }
   });
+
+  var SoundPool = Class.extend({
+    init: function() {
+      this.sounds = [ 
+        new Audio('assets/laser-shot.mp3'),
+        new Audio('assets/explosion.mp3'), 
+        new Audio('assets/laser-zap.mp3'),
+        new Audio('assets/glass-break.mp3'),
+      ];
+    },
+
+    playerShoots : function() { this.sounds[0].play(); },
+    playerBursts : function() { this.sounds[1].play(); },
+    enemieShoots : function() { this.sounds[2].play(); },
+    enemieBursts : function() { this.sounds[3].play(); },
+  });
   
   
   
@@ -504,6 +523,7 @@
     aliens = [];
     player = new Player();
     particleManager = new ParticleExplosion();
+    soundPool = new SoundPool();
     setupAlienFormation();  
     drawBottomHud();
   }
@@ -602,6 +622,7 @@
         if (checkRectCollision(bullet.bounds, alien.bounds)) {
           alien.alive = bullet.alive = false;
           particleManager.createExplosion(alien.position.x, alien.position.y, 'white', 70, 5,5,3,.15,50);
+          soundPool.enemieBursts();
           player.score += 25;
         }
       }
@@ -617,6 +638,7 @@
         } else {
          alien.bullet.alive = false;
          particleManager.createExplosion(player.position.x, player.position.y, 'green', 100, 8,8,6,0.001,40);
+         soundPool.playerBursts();
          player.position.set(CANVAS_WIDTH/2, CANVAS_HEIGHT - 70);
          player.lives--;
           break;

@@ -5,7 +5,7 @@
 ## Planned Extensions 
 
 - [x] user info about control keys
-- [ ] sounds for shots and explosions
+- [x] sounds for shots and explosions
 - [ ] music
 - [ ] colorful enemies and explosions
 - [ ] self destructing shots
