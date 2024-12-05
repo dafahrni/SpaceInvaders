@@ -771,12 +771,19 @@
     }
   }
   
+  function isRelevantKey(code) {
+    const relevantKeys = ["Space", "ArrowLeft", "ArrowRight", "Enter"];
+    return relevantKeys.includes(code);
+  }
+
   function onKeyDown(e) {
+    if (!isRelevantKey(e.code)) return;
     e.preventDefault();
     keyStates[e.keyCode] = true;
   }
   
   function onKeyUp(e) {
+    if (!isRelevantKey(e.code)) return;
     e.preventDefault();
     keyStates[e.keyCode] = false;
   }
