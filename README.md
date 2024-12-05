@@ -1,5 +1,6 @@
 # Space Invaders
 
+- you can play the game on [GitHub Pages](https://dafahrni.github.io/SpaceInvaders/)
 - original source code from [CodePen](https://codepen.io/adelciotto/pen/WNzRYy)
 
 ## Planned Extensions 
